@@ -65,7 +65,9 @@ rental_days = get_valid_input("Please enter the number of days you'll be hiring 
 
 
 # output summary of holiday and costs using predefined functions
-print(f"""\nYou've chosen on a trip to {city_flight.capitalize()}!  
+try: 
+    total_cost = holiday_cost(city_flight, num_nights, rental_days)
+    print(f"""\nYou've chosen on a trip to {city_flight.capitalize()}!  
 The cost breakdown is as follows: 
 Flight: £{plane_cost(city_flight)} 
 Hotel stay for {num_nights} nights: £{hotel_cost(city_flight, num_nights)}
@@ -73,3 +75,7 @@ Car hire for {rental_days} days: £{car_rental(city_flight, rental_days)}
 ---------------------------------------------------
 The total cost for the holiday is: £{holiday_cost()}
 """)
+except KeyError:
+    print("Error: Destination not found.")
+except Exception as e:
+    print("An error occurred:", e)
