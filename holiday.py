@@ -1,13 +1,13 @@
-# function to validate user input
+# Function to validate user input
 def get_valid_input(prompt, valid_options=None, input_type=str):
     while True:
-        # prompts user for input and converts input to lower case
+        # Prompts user for input and converts input to lower case
         user_input = input(prompt).lower()
         try:
-            # attempts to convert user input into specified data type
+            # Attempts to convert user input into specified data type
             user_input = input_type(user_input)
             # If valid options are provided (destinations list) 
-            # and user input is not in the list of valid options, raise a ValueError
+            # And user input is not in the list of valid options, raise a ValueError
             if valid_options is not None and user_input not in valid_options:
                 raise ValueError("Invalid option.")
             return user_input
@@ -15,22 +15,22 @@ def get_valid_input(prompt, valid_options=None, input_type=str):
             # If conversion fails or user input is not valid, prompt the user to try again
             print("Invalid input. Please try again.")
 
-# function to calculate plane costs 
+# Function to calculate plane costs 
 def plane_cost(city_flight):
     return costs_dic[city_flight]['plane_cost']
     
 
-# function to calculate hotel costs 
+# Function to calculate hotel costs 
 def hotel_cost(city_flight, num_nights):
     return costs_dic[city_flight]['hotel_cost'] * num_nights
 
 
-# function to calculate car rental costs 
+# Function to calculate car rental costs 
 def car_rental(city_flight, rental_days):
     return costs_dic[city_flight]['rental_cost'] * rental_days
 
 
-# function to calculate total holiday costs 
+# Function to calculate total holiday costs 
 def holiday_cost ():
     return plane_cost(city_flight) + hotel_cost(city_flight, num_nights) + car_rental(city_flight, rental_days)
 
@@ -45,10 +45,10 @@ Here's a list of our destinations:
 5. Prague
 6. Berlin""")
 
-# list of destinations to validate correct input
+# List of destinations to validate correct input
 destinations = ["paris", "madrid", "milan", "lisbon", "prague", "berlin"]
 
-# dictionary containing the associated costs
+# Dictionary containing the associated costs
 costs_dic = {
     "paris": {"plane_cost": 180, "hotel_cost": 200, "rental_cost": 80},
     "madrid": {"plane_cost": 110, "hotel_cost": 190, "rental_cost": 70},
@@ -58,7 +58,7 @@ costs_dic = {
     "berlin": {"plane_cost": 90, "hotel_cost": 110, "rental_cost": 75}
 }
 
-# get user input, validate if correct input using predefined function  
+# Get user input, validate if correct input using predefined function  
 city_flight = get_valid_input("Please enter your destination: ", destinations)
 num_nights = get_valid_input("Please enter the number of nights you'll be staying: ", input_type=int)
 rental_days = get_valid_input("Please enter the number of days you'll be hiring a car: ", input_type=int)
@@ -68,6 +68,7 @@ rental_days = get_valid_input("Please enter the number of days you'll be hiring 
 try: 
     total_cost = holiday_cost(city_flight, num_nights, rental_days)
     print(f"""\nYou've chosen on a trip to {city_flight.capitalize()}!  
+
 The cost breakdown is as follows: 
 Flight: £{plane_cost(city_flight)} 
 Hotel stay for {num_nights} nights: £{hotel_cost(city_flight, num_nights)}
